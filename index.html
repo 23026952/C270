@@ -1,19 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Greeting Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            text-align: center;
+            padding: 50px;
+            color: white;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #ff9800;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #e68900;
+        }
+        #greeting {
+            font-size: 1.5em;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter Your age and Select a Greeting</h1>
-    <form method="post">
-        <input type="text" name="name" placeholder="Your Name" required>
+    <h1>Enter Your Name and Select a Greeting</h1>
+    <form id="greetForm">
+        <input type="text" id="name" placeholder="Your Name" required>
         <label for="greeting_type">Choose a Greeting:</label>
-        <select name="greeting_type" id="greeting_type">
+        <select id="greeting_type">
             <option value="Hello">Hello</option>
             <option value="Good Morning">Good Morning</option>
             <option value="Welcome">Welcome</option>
         </select>
         <button type="submit">Submit</button>
     </form>
+ 
+    <p id="greeting"></p>
+ 
+    <script>
+        document.getElementById("greetForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let greetingType = document.getElementById("greeting_type").value;
+            document.getElementById("greeting").textContent = `${greetingType}, ${name}!`;
+            document.getElementById("greeting").style.display = "block";
+        });
+    </script>
 </body>
 </html>
